@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("Montserrat-Regular.ttf");
+}
+:root{
+    --font-family: 'Montserrat-Regular';
+    --navbar-bg-color: #14171a;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.8;
+    font-family: var(--font-family);
+}
+nav{
+    width: 100%;
+    height: 50px;
+    background-color: var(--navbar-bg-color);
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+form{
+    width: 100%;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+}
+input[type="submit"], button{
+    background-color: rgb(32, 32, 32);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+input[type="submit"]:hover, button:hover {
+    background-color: black;
+}
+table{
+    width: 100%;
+    margin-top: 25px;
+    padding: 0 10%;
+}
+td{
+    border-bottom: 1px solid #ccc;
+    padding: 7px;
+}
+.name-td, .email-td{
+    width: 40%;
+}
