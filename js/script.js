@@ -1,6 +1,7 @@
 let form = document.querySelector('form');
 let tbody = document.querySelector('table tbody');
 let users = [];
+let indexElementChoisi = -1;
 
 form.addEventListener('submit', function(event){
     event.preventDefault();
@@ -14,7 +15,20 @@ form.addEventListener('submit', function(event){
             password : data.get('password').trim(),
             email : data.get('email').trim()
         }
-        users.push(user);
+        //On vérifie quelle action à éxecuter
+        if (data.get('action').trim() === 'creer') {
+            users.push(user);
+        }
+        else{
+            //Dans ce cas c-à-d que l'action vaut Modifier
+            users[indexElementChoisi] = user;
+            let inputs = document.querySelectorAll('input');
+            //Champ action
+            inputs[3].value = 'creer';
+            //Champ représentant le bouton
+            inputs[4].value = 'Créer user';
+            indexElementChoisi = -1;
+        }
         afficher();
         form.reset();
     }
@@ -48,17 +62,16 @@ function deleteUser(index){
 }
 
 function updateUser(index){
+    indexElementChoisi = index;
     let inputs = document.querySelectorAll('input');
-    //On vérifie s'il n'y a pas d'utilisateur en cour de modification
-    if (inputs[0].value.trim().length !== 0 && 
-    inputs[1].value.trim().length !== 0 && 
-    inputs[2].value.trim().length !== 0) {
-        alert('Un user est en cour de modification');
-    }
-    else{
-        inputs[0].value = users[index].name;
-        inputs[1].value = users[index].password;
-        inputs[2].value = users[index].email;
-        deleteUser(index);
-    }
+    //Champ name
+    inputs[0].value = users[index].name;
+    //Champ password
+    inputs[1].value = users[index].password;
+    //Champ email
+    inputs[2].value = users[index].email;
+    //Champ action
+    inputs[3].value = 'modifier';
+    //Champ représentant le bouton
+    inputs[4].value = 'Modifier';
 }
