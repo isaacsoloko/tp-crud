@@ -1,6 +1,9 @@
+//Recuperation du formulaire
 let form = document.querySelector('form');
+//Notre tbody qui contiendra la liste des users
 let tbody = document.querySelector('table tbody');
 let users = [];
+//Indice permettant de stocker la position de l'utilisateur sélectionné pour modification
 let indexElementChoisi = -1;
 
 form.addEventListener('submit', function(event){
@@ -20,13 +23,15 @@ form.addEventListener('submit', function(event){
             users.push(user);
         }
         else{
-            //Dans ce cas c-à-d que l'action vaut Modifier
+            //Dans ce cas c-à-d que l'action vaut modifier
+            //On écrase l'ancien user contenant les anciennes infos
             users[indexElementChoisi] = user;
             let inputs = document.querySelectorAll('input');
             //Champ action
             inputs[3].value = 'creer';
             //Champ représentant le bouton
             inputs[4].value = 'Créer user';
+            //On remet à -1
             indexElementChoisi = -1;
         }
         afficher();
@@ -56,13 +61,16 @@ function afficher(){
     }
 }
 
+//Fonction permettant de supprimer l'utilisateur
 function deleteUser(index){
     users.splice(index, 1);
     afficher();
 }
 
+//Fonction permettant la mise à jour de l'utilisateur
 function updateUser(index){
     indexElementChoisi = index;
+    //On recupère tous les champs du formulaire pour les remplir par les anciennes valeurs de l'utilisateur
     let inputs = document.querySelectorAll('input');
     //Champ name
     inputs[0].value = users[index].name;
